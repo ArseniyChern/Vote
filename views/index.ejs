@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+            <link rel="stylesheet" type="text/css" href="/css/style.css">
+
+        <script>
+            $(document).ready(function() {
+
+                $('#bobCheckBox').click(function() {
+                    $('#steveCheckBox').attr('checked',false);
+                })
+
+                $('#steveCheckBox').click(function() {
+                    $('#bobCheckBox').attr('checked',false);
+                })
+
+
+                $('.onClick').click(function() {
+                    var voteFor = '';
+                    var ssn = $('#enterSecret').val();
+                    if(ssn=='') {
+                        return;
+                    }
+                    console.log(ssn)
+                    if($('#bobCheckBox').is('checked')) {
+                        voteFor="bob";
+                    } else {
+                        voteFor="steve";
+                    }
+                    $.post("http://localhost:3000/vote?secret="+ssn+"&vote="+voteFor, function(data, status){
+                        console.log(data);
+
+                        if(data.status === "Success") {
+                            $('#container').html('<h1 class = "thanks">Thank you for voting</h1>')
+                        }
+                    });
+                })
+            })
+        </script>
+    </head>
+        
+    <body>
+
+        <div id = "container">
+
+            <input class = "screen1" type = "text" id="enterSecret" placeholder="Enter SSN"/>
+            <br />
+            <label class = "screen1" for="bobCheckBox">Bob Mann:</label>
+            <input id="bobCheckBox" class="screen1 checkBox" type ="checkbox"/>
+            <br />
+
+            <label class = "screen1" for="steveCheckBox">Steve Reter:</label>
+            <input id="steveCheckBox" class="checkBox screen1" type ="checkbox"/>
+            <br />
+            <button class="onClick screen1">Click Me!</button>
+    </div>
+
+    </body>
+</html>

@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+.thanks {
+    
+}
+
+#container {
+    margin:auto;
+    width:50%;
+}
+
+#enterSecret {
+    margin:1em;
+    padding:.5em;
+}
+
+#enterSecret:focus {
+    margin:1em;
+    outline:none;
+}
+
+#bobCheckBox {
+    margin-top:1em;
+    margin-bottom:1em;
+    margin-left:0em;
+    margin-right:0em;
+
+}
+
+.onClick {
+    margin:1em;
+}
+
+body {
+    font-family: 'Open-Sans',sans-serif;
+}
