@@ -1,18 +1,20 @@
-const express = require('express')
-const mongo = require('mongodb')
 
-const server = express()
-const db = mongo.MongoClient
 
-server.set('view engine','ejs')
-server.use(express.static(__dirname+'/views'))
+  const express = require('express')
+  const mongo = require('mongodb')
 
-db.connect('mongodb://localhost:27017',(err,client) => {
+  const server = express()
+  const db = mongo.MongoClient
+
+  server.set('view engine','ejs')
+  server.use(express.static(__dirname+'/views'))
+
+  db.connect('mongodb://localhost:27017',(err,client) => {
     const database = client.db('votes')
 
     let tasks = []
     let voted = []
- 
+
     server.get('/',(req,res) => {
             res.render('index.ejs')
     })
@@ -32,7 +34,9 @@ db.connect('mongodb://localhost:27017',(err,client) => {
             res.send({status:'error',error:'Already Voted'})
         }
     })
-})
+  })
 
-server.listen(3000)
 
+
+
+module.exports = server;
